@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>הדמיית כניסה – כרטיס דמיוני</title>
+<style>
+  :root { --bg:#eef2f7; --card:#fff; --text:#1f2937; --muted:#6b7280; --primary:#2563eb; --err:#b91c1c; --errbg:#fee2e2; --note:#fef9c3; }
+  @media (prefers-color-scheme: dark) {
+    :root { --bg:#111827; --card:#1f2937; --text:#f3f4f6; --muted:#9ca3af; --primary:#3b82f6; --err:#fecaca; --errbg:#7f1d1d; --note:#422006; }
+  }
+  * { box-sizing: border-box; }
+  body { margin:0; min-height:100vh; display:flex; align-items:center; justify-content:center;
+         font-family: Arial, "Segoe UI", sans-serif; background:var(--bg); color:var(--text); padding:16px; }
+  .box { background:var(--card); width:100%; max-width:420px; padding:28px; border-radius:14px; box-shadow:0 8px 24px rgba(0,0,0,.12); }
+  h1 { margin:0 0 6px; font-size:1.4rem; }
+  p.sub { margin:0 0 18px; color:var(--muted); }
+  .note { background:var(--note); padding:10px 12px; border-radius:8px; font-size:.9rem; margin-bottom:18px; }
+  label { display:block; margin:12px 0 6px; font-weight:bold; }
+  input { width:100%; padding:12px; font-size:1.05rem; border:1px solid #9ca3af; border-radius:8px;
+          background:transparent; color:var(--text); direction:ltr; text-align:left; }
+  input:focus { outline:2px solid var(--primary); border-color:var(--primary); }
+  button { width:100%; margin-top:20px; padding:13px; font-size:1.05rem; border:0; border-radius:8px;
+           background:var(--primary); color:#fff; cursor:pointer; }
+  button:hover { opacity:.92; }
+  .error { background:var(--errbg); color:var(--err); padding:10px 12px; border-radius:8px; margin-bottom:12px; }
+</style>
+</head>
+<body>
+  <main class="box">
+    <h1>💳 הדמיית כניסה</h1>
+    <p class="sub">תרגיל לתלמידים – כרטיס אשראי דמיוני</p>
+
+    <div class="note">⚠️ זהו אתר הדמיה בלבד. <strong>אין להזין פרטי כרטיס אשראי אמיתיים!</strong><br>
+      הנתונים לתרגיל: כרטיס <b dir="ltr">1111 2222 33333 4444</b> וקוד <b>355</b>.</div>
+
+    {% if error %}<div class="error" role="alert">{{ error }}</div>{% endif %}
+
+    <form method="post" autocomplete="off">
+      <label for="card">מספר כרטיס</label>
+      <input id="card" name="card" type="text" inputmode="numeric" placeholder="0000 0000 00000 0000" required>
+
+      <label for="code">קוד כרטיס</label>
+      <input id="code" name="code" type="text" inputmode="numeric" maxlength="4" placeholder="000" required>
+
+      <button type="submit">כניסה</button>
+    </form>
+  </main>
+</body>
+</html>
